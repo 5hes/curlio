@@ -49,7 +49,7 @@ jobs:
         rustup default nightly
         rustc --version
         
-        cargo install cross --git https://github.com/cross-rs/cross
+        # cargo install cross --git https://github.com/cross-rs/cross
         # rustup target add aarch64-unknown-linux-musl
         # rustup target add aarch64-unknown-linux-musl --toolchain=nightly
 
@@ -57,15 +57,15 @@ jobs:
         export AR_aarch64_unknown_linux_musl=llvm-ar-19
         # export CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_RUSTFLAGS="-Clink-self-contained=yes -Clinker=rust-lld"
         
-        # export CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER=$(which ld.lld-19)
+        export CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER=$(which ld.lld-19)
         export CC=clang-19
         export CXX=clang++-19
         rustup update
         sudo apt-get update
         sudo apt-get install pkg-config  libssl-dev -y
-        cross build --target aarch64-unknown-linux-musl --release
+        # cross build --target aarch64-unknown-linux-musl --release
         # rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
-        # CC=clang-19 cargo build --target aarch64-unknown-linux-musl --release
+        CC=clang-19 cargo build --target aarch64-unknown-linux-musl --release
 
     - name: Check info
       run: |
