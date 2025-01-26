@@ -44,7 +44,6 @@ jobs:
         . $HOME/.cargo/env
         export PATH=$PATH:$HOME/.cargo/bin
         rustup toolchain install nightly
-        rustup update
         rustup run nightly rustc --version
         rustup default nightly
         rustc --version
@@ -62,7 +61,8 @@ jobs:
         export CXX=clang++-19
         rustup update
         # cross build --target aarch64-unknown-linux-musl --release
-        CC=clang-19 cargo build -Zbuild-std --target aarch64-unknown-linux-musl --release
+        # rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
+        CC=clang-19 cargo build --target aarch64-unknown-linux-musl --release
 
     - name: Check info
       run: |
