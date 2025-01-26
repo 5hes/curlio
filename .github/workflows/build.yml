@@ -61,6 +61,8 @@ jobs:
         export CC=clang-19
         export CXX=clang++-19
         rustup update
+        sudo apt-get update
+        sudo apt-get install pkg-config  libssl-dev -y
         cross build --target aarch64-unknown-linux-musl --release
         # rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
         # CC=clang-19 cargo build --target aarch64-unknown-linux-musl --release
